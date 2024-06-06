@@ -1,0 +1,63 @@
+Introduction of ArgoCD
+
+-Compile -> Test -> Scan -> Build -> Docker --> Continuous  Integration 
+-Update Manifest Files -> Kubernates (K8) --> Continuous Delivery
+
+->Traditional Methods:
+
+-Installing the Kubernates -> kubtcl or jenkins [kubtcl apply -f yaml]
+-Configure the jenkins - k8
+->Credentials - k8
+-> cloud K8{KBS} ->[access-> cloud and k8] 
+-In Traditional methods of plugining into the ArgoCD is Difficult and security challenges also..
+-Installing the aws cli 
+
+GitLab -> Jenkins(Access to cloud resource is required) -> k8 Cluster (App)(install kubcetl)
+
+//ArgoCD
+
+-ArgoCD is CD Tool {GitOps}
+-It provides an Single Source of Truth 
+
+Deployment Files and Infrastructure Files are stored in the Git -> As it's an Infrastructure as Code(Iac)
+
+//Way of Deploying the application using the ArgoCD --> ArgoCD Workflow:
+
+--->In this method their no requirement of any plugins
+-No Kubcetl
+-No Plugins
+-No Credentials
+-No Aws Cli
+
+Important Files:
+-Deployment.yaml
+ -Service.yaml
+                    {Source Files}
+Jenkins <---------> Git[Repo 1]--->   K8 Cluster [Inside which the ArgoCD is installed {ApplicationFiles} ]
+        |                               | {Docker Image}
+          --------->Git[Repo 2]---------
+                    {manifest Files}
+
+-->Desired State == Current State
+
+-> Manifest Files -> Desired State 
+-> Application Files -> Current State 
+For Example 
+Desired State -> version 1
+Current State -> Version 2
+-> If the condition fails then ArgoCD will automatically update to the latest version of the application. 
+When changes or update from the user such as version number or etc..,
+
+
+-> kubectl apply -f deploy.yaml --> Current Stage
+
+->Any Updates in Repo 1 is linked to Jenkins and is pushed into the Repo -2 {master Branch} -> ArgoCd -> Application{K8 Cluster}
+//Access Control:
+-> If any changes made by the developer and any teammates it's needs to be approved by the architect of the project
+
+Limitations:
+-> No Direct Commit is allowed to master branch
+
+->So that individual branch made for each push to Repository (Pull request intially by the teammates)
+-> Approve should made by the architect.
+
