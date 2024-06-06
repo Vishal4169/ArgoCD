@@ -61,3 +61,15 @@ Limitations:
 ->So that individual branch made for each push to Repository (Pull request intially by the teammates)
 -> Approve should made by the architect.
 
+Jenkins pipeline
+CI Steps:
+-Configure
+-test cases
+-scan Fs
+-Sonar analysis
+-building app
+-docker
+-updating the Repo
+
+
+
