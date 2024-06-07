@@ -5,7 +5,7 @@ Introduction of ArgoCD
 
 ->Traditional Methods:
 
--Installing the Kubernates -> kubtcl or jenkins [kubtcl apply -f yaml]
+-Installing the Kubernates -> kubectl or jenkins [kubectl apply -f yaml]
 -Configure the jenkins - k8
 ->Credentials - k8
 -> cloud K8{KBS} ->[access-> cloud and k8] 
@@ -70,6 +70,59 @@ CI Steps:
 -building app
 -docker
 -updating the Repo
+
+Creating Roles:
+
+Create Role -> Aws services -> Eks Cluster -> Provide an Name
+
+Create Role -> Aws services -> Ec2 -> Add policies ->
+[AmazonEc2ContainerRegistryReadOnly]
+Add the required policies.
+
+Creating an Eks Cluster -> Name,Version,Role -> SecurityGroup -> Cluster Endpoint -> next -> Create
+
+Compute -> Name -> SelectRole -> Select Node Type and Size -> Next -> Create
+
+CloudShell -> Aws eks update-kubeconfig --name cluster_name --region ap-south-1
+
+->kubectl get nodes  - worker nodes
+
+->kubectl get ns -> list namespace 
+
+//Install ArgoCD:
+
+->kubectl create namespace argocd
+->kubectl apply -n argocd -f (url)
+
+
+-> List all the argocd created:
+
+kubectl get all -n argocd
+
+-pod/
+-service/
+-deployment.apps/
+
+
+Service ---- Application Pod
+|
+Request
+
+/Internal Access
+-Cluster Ip
+/External Access
+-Nodeport
+
+-Load Balancer
+-Ingress
+
+
+
+
+
+
+
+
 
 
 
