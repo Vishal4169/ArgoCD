@@ -110,11 +110,17 @@ Request
 
 /Internal Access
 -Cluster Ip
+
 /External Access
 -Nodeport
-
 -Load Balancer
 -Ingress
+
+//Get URL and Pass
+
+-kubectl patch svc argocd-server -n argocd -p '{"type":"LoadBalancer"}}'
+-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath={}
+
 
 
 
